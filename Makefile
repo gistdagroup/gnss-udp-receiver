@@ -1,9 +1,9 @@
 .PHONY: build push
 
 build:
-	docker build -t jiramot/gps .
+	docker build -t gistda/gnss-udp-receiver .
 
 push:
-	docker push jiramot/gps
+	docker push gistda/gnss-udp-receiver
 
 default: build
