@@ -1,4 +1,6 @@
-# UPD
+# GNSS UDP Receiver
+
+[![Build Status](https://travis-ci.org/gitsda/gnss-udp-receiver.svg?branch=master)](https://travis-ci.org/gitsda/gnss-udp-receiver)
 
 ## How to run
 ```
