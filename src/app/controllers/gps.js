@@ -1,7 +1,7 @@
 'use strict'
 
-import * as parser from '~/app/utils/gps-parser'
-import Gps from '~/app/models/gps'
+import * as parser from '~/app/utils/gnss-parser'
+import Gps from '~/app/models/gnss'
 import logger from '~/config/logger'
 
 export const onReceive = (message) => {

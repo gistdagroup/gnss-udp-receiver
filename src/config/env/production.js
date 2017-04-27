@@ -13,10 +13,10 @@ if (fs.existsSync(envFile)) {
 
 module.exports = {
   logger: {
-    level: 'error'
+    level: 'debug'
   },
   db: {
-    uri: 'mongodb://mongo:27017/gps',
+    uri: 'mongodb://mongo:27017/gistda',
     options: {
       server: {
         socketOptions: { keepAlive: 1 }

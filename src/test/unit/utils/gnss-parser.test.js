@@ -2,14 +2,14 @@
 
 'use strict'
 
-import * as parser from '~/app/utils/gps-parser.js'
+import * as parser from '~/app/utils/gnss-parser.js'
 import assert from 'assert'
 
 const message = '358901049754804|170411063349.80|1A|1|0.052|0.98|1340.75488|10031.61590|15|G27,G16,S40,G23,G26,G09,G03,S41,G08,G07,B07,B02,B14,B10,B05'
 const message2 = '520030500494099|190317042421.00|2|0BC7|291A110|31'
 const message3 = 'f0ddaf005b460c1|170411063349.80|3|1|0.050|1.00|13.77836544|100.54443871|||'
 
-describe('gps-parser', () => {
+describe('gnss-parser', () => {
   describe('parse imei', () => {
     it('should get imie from message 1', () => {
       let expected = '358901049754804'

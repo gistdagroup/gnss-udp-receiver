@@ -3,7 +3,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const GpsSchema = new Schema({
+const GnssSchema = new Schema({
   imei: { type: String },
   date: { type: Date },
   type: { type: String },
@@ -19,6 +19,6 @@ const GpsSchema = new Schema({
   gsmSignel: { type: String }
 }, {
   timestamps: true,
-  collection: 'gps' })
+  collection: 'gnss' })
 
-export default mongoose.model('Gps', GpsSchema)
+export default mongoose.model('Gnss', GnssSchema)
