@@ -11,6 +11,8 @@ docker-compose build
 docker-compose up -d
 ```
 
+## Deploy with travis
+See https://oncletom.io/2016/travis-ssh-deploy/
 
 # Simulate udp package in OSX
 ```
