@@ -10,7 +10,7 @@ describe('gps-parser', () => {
   it('should parse messages', () => {
     let datas = controller.onReceive(messages)
 
-    assert.equal(datas[0].imei, 358901049754804)
+    assert.equal(datas[0].imei, 35890104975480)
     assert.equal(datas[0].speed, 0.052)
     assert.equal(datas[1].speed, 0.091)
   })
