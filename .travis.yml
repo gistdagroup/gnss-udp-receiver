@@ -6,7 +6,6 @@ node_js:
 env:
   - NODE_ENV=test
 before_install:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com
   - npm install -g codecov
 install:
   - npm install
@@ -16,4 +15,5 @@ before_script:
   - codecov --token=$CODECOV_TOKEN
 script:
   - docker build -t gistda/gnss-udp-receiver .
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com
   - docker push gistda/gnss-udp-receiver
