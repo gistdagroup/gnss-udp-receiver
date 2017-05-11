@@ -1,7 +1,7 @@
 'use strict'
 
 import * as parser from '~/app/utils/gnss-parser'
-import Gps from '~/app/models/gnss'
+import Gnss from '~/app/models/gnss'
 import logger from '~/config/logger'
 
 export const onReceive = (message) => {
@@ -23,7 +23,7 @@ export const onReceive = (message) => {
 export const save = async (datas) => {
   let promises = []
   for (let data of datas) {
-    promises.push(new Gps(data).save())
+    promises.push(new Gnss(data).save())
   }
   await Promise.all(promises)
 }
