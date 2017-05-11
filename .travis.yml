@@ -15,6 +15,6 @@ before_script:
   - codecov --token=$CODECOV_TOKEN
 script:
   - docker build -t gistda/gnss-udp-receiver .
-after_success:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com
-  - docker push gistda/gnss-udp-receiver
+deploy:
+  - provider: script
+    script: bin/dockerhub.sh
