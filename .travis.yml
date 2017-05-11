@@ -18,5 +18,5 @@ before_script:
 script:
   - docker build -t gistda/gnss-udp-receiver .
 after_success:
-  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
-    docker push gistda/gnss-udp-receiver
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push gistda/gnss-udp-receiver
