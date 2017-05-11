@@ -9,11 +9,11 @@ before_install:
   - npm install -g codecov
 install:
   - npm install
-before_script:
+script:
   - npm test
   - npm run coverage
   - codecov --token=$CODECOV_TOKEN
-script:
-  - docker build -t gistda/gnss-udp-receiver .
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com
-  - docker push gistda/gnss-udp-receiver
+after_success:
+  - set -e
+  - docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}";
+  - ./scripts/build.sh
