@@ -1,9 +1,15 @@
 language: node_js
+services:
+  - docker
 node_js:
   - "7"
 env:
   - NODE_ENV=test
 install:
   - npm install
+before_script:
+  - npm test
 script:
-  - npm test    
+  - docker build -t gistda/gnss-udp-receiver .
+deploy:
+  - docker push gistda/gnss-udp-receiver
