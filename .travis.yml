@@ -14,7 +14,7 @@ before_script:
   - npm run coverage
   - codecov --token=$CODECOV_TOKEN
 script:
-  - docker build -t gistda/gnss-udp-receiver .
-deploy:
-  - provider: script
-    script: bin/dockerhub.sh
+  - docker build -t jiramot/gnss-udp-receiver .
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push jiramot/gnss-udp-receiver
