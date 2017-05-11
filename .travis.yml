@@ -5,10 +5,14 @@ node_js:
   - "7"
 env:
   - NODE_ENV=test
+before_install:
+  - npm install -g codecov
 install:
   - npm install
 before_script:
   - npm test
+  - npm run coverage
+  - codecov --token=$CODECOV_TOKEN
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker build -t gistda/gnss-udp-receiver .
