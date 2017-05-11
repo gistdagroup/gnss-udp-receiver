@@ -49,9 +49,11 @@ server.on('error', (err) => {
 
 server.on('message', (msg, rinfo) => {
   logger.info(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
-  visitor.pageview('/').send()
+
   let datas = controller.onReceive(msg)
   controller.save(datas)
+
+  visitor.pageview('/gnss').send()
 })
 
 server.on('listening', () => {
