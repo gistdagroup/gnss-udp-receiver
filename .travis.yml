@@ -14,6 +14,9 @@ before_script:
   - npm run coverage
   - codecov --token=$CODECOV_TOKEN
 script:
-  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com
   - docker build -t gistda/gnss-udp-receiver .
-  - docker push gistda/gnss-udp-receiver
+after_success:
+ - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS hub.docker.com;
+    docker push gistda/gnss-udp-receiver;
+  fi
