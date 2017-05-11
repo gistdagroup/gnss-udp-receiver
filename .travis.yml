@@ -3,6 +3,7 @@ services:
   - docker
 node_js:
   - "7"
+sudo: yes  
 env:
   - NODE_ENV=test
 before_install:
