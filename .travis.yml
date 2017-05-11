@@ -18,4 +18,4 @@ script:
 after_success:
   - docker login -u "${DOCKER_USER}" -p "${DOCKER_PASS}" hub.docker.com
   - docker build -t gistda/gnss-udp-receiver .
-  - docekr push gistda/gnss-udp-receiver
+  - docker push gistda/gnss-udp-receiver
