@@ -8,6 +8,8 @@ node_js:
 env:
   - NODE_ENV=test
 before_install:
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-engine
   - npm install -g codecov
   - docker build -t gistda/gnss-udp-receiver .
 install:
