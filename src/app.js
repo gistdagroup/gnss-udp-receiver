@@ -53,7 +53,7 @@ server.on('message', (msg, rinfo) => {
   let datas = controller.onReceive(msg)
   controller.save(datas)
 
-  visitor.pageview('/gnss').send()
+  visitor.pageview('/udp').send()
 })
 
 server.on('listening', () => {
