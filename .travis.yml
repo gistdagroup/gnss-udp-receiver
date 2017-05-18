@@ -21,7 +21,7 @@ script:
   - docker build -t gistda/gnss-udp-receiver:$TRAVIS_BUILD_NUMBER .
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - export REPO=gistda/nmea-tcp-receiver
+  - export REPO=gistda/gnss-udp-receiver
   - docker tag $REPO:$TRAVIS_BUILD_NUMBER $REPO:latest
   - docker push $REPO:$TRAVIS_BUILD_NUMBER
   - docker push $REPO:latest
