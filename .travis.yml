@@ -18,10 +18,13 @@ before_script:
   - npm run coverage
   - codecov --token=$CODECOV_TOKEN
 script:
-  - docker build -t gistda/gnss-udp-receiver .
+  - docker build -t gistda/gnss-udp-receiver:$TRAVIS_BUILD_NUMBER .
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push gistda/gnss-udp-receiver
+  - export REPO=gistda/nmea-tcp-receiver
+  - docker tag $REPO:$TRAVIS_BUILD_NUMBER $REPO:latest
+  - docker push $REPO:$TRAVIS_BUILD_NUMBER
+  - docker push $REPO:latest
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_7c97b65118bb_key -iv $encrypted_7c97b65118bb_iv
     -in deploy_rsa.enc -out /tmp/deploy_rsa -d
@@ -31,6 +34,6 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST -p $SSH_PORT "cd services; ./udp.sh"
+  script: ssh -o StrictHostKeyChecking=no $DEPLOY_USER@$DEPLOY_HOST -p $SSH_PORT "cd services; ./udp.sh $TRAVIS_BUILD_NUMBER"
   on:
     branch: master
