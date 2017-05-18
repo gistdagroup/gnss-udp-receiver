@@ -351,30 +351,4 @@ describe('gnss-parser', () => {
       assert.equal(actual.getTime(), expected.getTime())
     })
   })
-
-  describe('parseNmeaToDecimal', () => {
-    it('should parse 1340.7542 to decimal', () => {
-      let expect = 13.6792377
-
-      let actual = parser.parseNmeaToDecimal(1340.7542)
-
-      assert.equal(parseFloat(actual).toFixed(5), parseFloat(expect).toFixed(5))
-    })
-
-    it('should parse 10031.61802 to decimal', () => {
-      let expect = 100.526967
-
-      let actual = parser.parseNmeaToDecimal(10031.61802)
-
-      assert.equal(parseFloat(actual).toFixed(5), parseFloat(expect).toFixed(5))
-    })
-
-    it('should return null when parse null', () => {
-      let expect = null
-
-      let actual = parser.parseNmeaToDecimal(null)
-
-      assert.equal(actual, expect)
-    })
-  })
 })

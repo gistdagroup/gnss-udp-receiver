@@ -1,5 +1,7 @@
 'use strict'
 
+import * as nmea from '~/app/utils/nmea'
+
 export const GNSS_TYPE = '1A'
 export const GSM_TYPE = '2'
 export const APP_TYPE = '3'
@@ -19,7 +21,7 @@ export const parse = (message) => {
     result.angle = parseDouble(fields[2])
     result.speed = parseDouble(fields[3])
     result.hdop = parseDouble(fields[4])
-    result.coord = {lng: parseNmeaToDecimal(parseDouble(fields[6])), lat: parseNmeaToDecimal(parseDouble(fields[5]))}
+    result.coord = {lng: nmea.toDecimal(parseDouble(fields[6])), lat: nmea.toDecimal(parseDouble(fields[5]))}
     result.sats = parseDouble(fields[7])
     result.satprn = fields[8].replace(/\\?\\n/g, '')
   } else if (result.type === GSM_TYPE) {
@@ -52,6 +54,7 @@ export const parseDate = (string) => {
     return null
   }
 }
+
 export const parseDouble = (string) => {
   let data = parseFloat(string)
   if (!isNaN(data)) {
@@ -59,11 +62,4 @@ export const parseDouble = (string) => {
   } else {
     return null
   }
-}
-
-export const parseNmeaToDecimal = (pointNmea) => {
-  if (!pointNmea) { return null }
-  let dd = Math.floor(pointNmea / 100)
-  let mm = (pointNmea - (dd * 100)) / 60
-  return dd + mm
 }
