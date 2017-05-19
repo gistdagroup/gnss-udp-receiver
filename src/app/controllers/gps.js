@@ -16,7 +16,7 @@ export const onReceive = (message) => {
       if (data) {
         logger.debug `push  ${data}`
         if (data.imei) {
-          visitor.pageview('/udp' + data.imei).send()
+          visitor.pageview('/udp-' + data.imei).send()
         }
         datas.push(data)
       }
