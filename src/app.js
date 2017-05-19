@@ -8,13 +8,11 @@ import mongoose from 'mongoose'
 import mockgoose from 'mockgoose'
 import logger from '~/config/logger'
 import * as controller from '~/app/controllers/gps'
-import ua from 'universal-analytics'
 const join = path.join
 const models = join(__dirname, 'app/models')
 const server = dgram.createSocket('udp4')
 const port = process.env.PORT || 3000
 logger.level = config.logger.level || 'debug'
-const visitor = ua('UA-97830439-1')
 
 mongoose.Promise = global.Promise
 
@@ -49,11 +47,8 @@ server.on('error', (err) => {
 
 server.on('message', (msg, rinfo) => {
   logger.info(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`)
-
   let datas = controller.onReceive(msg)
   controller.save(datas)
-
-  visitor.pageview('/udp').send()
 })
 
 server.on('listening', () => {

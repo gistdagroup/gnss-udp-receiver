@@ -3,6 +3,8 @@
 import * as parser from '~/app/utils/gnss-parser'
 import Gnss from '~/app/models/gnss'
 import logger from '~/config/logger'
+import ua from 'universal-analytics'
+const visitor = ua('UA-97830439-1')
 
 export const onReceive = (message) => {
   let messages = message.toString('UTF-8')
@@ -13,6 +15,9 @@ export const onReceive = (message) => {
       let data = parser.parse(m)
       if (data) {
         logger.debug `push  ${data}`
+        if (data.imei) {
+          visitor.pageview('/udp' + data.imei).send()
+        }
         datas.push(data)
       }
     }
