@@ -59,5 +59,25 @@ describe('gps-parser', () => {
       let gnsss = await Gnss.find({})
       assert.equal(gnsss.length, 1)
     })
+
+    it('should save gnss as location success', async() => {
+      let datas = [{
+        imei: '358901049754804',
+        date: new Date(),
+        type: '1A',
+        angle: null,
+        speed: 0.052,
+        hdop: 1.2,
+        coord: {lng: 100.52697583333332, lat: 13.679236166666666},
+        sats: 15,
+        satprn: 'G01,G17,S41,S40,G28,G30,G11,G19,B07,B13,B05,B08,B11,B10,B02'
+      }]
+
+
+      await controller.save(datas)
+
+      let count = await Location.count({})
+      assert.equal(count, 1)
+    })
   })
 })
