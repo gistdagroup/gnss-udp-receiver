@@ -3,3 +3,4 @@ node_modules/*
 src/coverage/*
 deploy_rsa
 deploy_rsa.pub
+.idea/*
