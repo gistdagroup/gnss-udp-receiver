@@ -36,7 +36,6 @@ export const save = async(datas) => {
   await Promise.all(promises)
 }
 
-
 let convertGnssToLocation = async(data) => {
   let vehical = await getVehicalFromDeviceId(data.imei)
   return {
@@ -47,6 +46,7 @@ let convertGnssToLocation = async(data) => {
     vehical: vehical
   }
 }
+
 let getVehicalFromDeviceId = async(deviceId) => {
   let vehical = null
   let device = await Device.findOne({name: deviceId})
