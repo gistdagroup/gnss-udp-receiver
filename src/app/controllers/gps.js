@@ -28,10 +28,14 @@ export const onReceive = (message) => {
 }
 
 export const save = async(datas) => {
+  let isSaveFirstLocation = false
   let promises = []
   for (let data of datas) {
     promises.push(new Gnss(data).save())
-    promises.push(new Location(await convertGnssToLocation(data)).save())
+    if (!isSaveFirstLocation) {
+      promises.push(new Location(await convertGnssToLocation(data)).save())
+      isSaveFirstLocation = true
+    }
   }
   await Promise.all(promises)
 }
