@@ -58,8 +58,6 @@ let convertGnssToLocation = async(data) => {
     date: data.date,
     coord: data.coord,
     hdop: data.hdop,
-    vehical: vehical,
-    hash: hash,
     uuid: data.imei
   }
 }
