@@ -2,7 +2,6 @@
 
 import * as parser from '~/app/utils/gnss-parser'
 import Gnss from '~/app/models/gnss'
-import Device from '~/app/models/device'
 import Location from '~/app/models/location'
 import logger from '~/config/logger'
 import ua from 'universal-analytics'
@@ -39,8 +38,7 @@ export const save = async(datas) => {
       let hash = utils.createLocationHash(data)
       let location = await Location.findOne({hash: hash})
       if (!location) {
-        location = await convertGnssToLocation(data)
-        // promises.push(new Location(location).save())
+        location = {type: 'GNSS', date: data.date, coord: data.coord, hdop: data.hdop, uuid: data.imei}
         promises.push(locationApi(location))
         isSaveFirstLocation = true
       }
@@ -48,25 +46,4 @@ export const save = async(datas) => {
     }
   }
   await Promise.all(promises)
-}
-
-let convertGnssToLocation = async(data) => {
-  // let vehicle = await getVehicleFromDeviceId(data.imei)
-  let hash = utils.createLocationHash(data)
-  return {
-    type: 'GNSS',
-    date: data.date,
-    coord: data.coord,
-    hdop: data.hdop,
-    uuid: data.imei
-  }
-}
-
-let getVehicleFromDeviceId = async(deviceId) => {
-  let vehicle = null
-  let device = await Device.findOne({name: deviceId})
-  if (device) {
-    vehicle = device.vehicle
-  }
-  return vehicle
 }
