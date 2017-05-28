@@ -51,7 +51,7 @@ export const save = async(datas) => {
 }
 
 let convertGnssToLocation = async(data) => {
-  // let vehical = await getVehicalFromDeviceId(data.imei)
+  // let vehicle = await getVehicleFromDeviceId(data.imei)
   let hash = utils.createLocationHash(data)
   return {
     type: 'GNSS',
@@ -62,11 +62,11 @@ let convertGnssToLocation = async(data) => {
   }
 }
 
-let getVehicalFromDeviceId = async(deviceId) => {
-  let vehical = null
+let getVehicleFromDeviceId = async(deviceId) => {
+  let vehicle = null
   let device = await Device.findOne({name: deviceId})
   if (device) {
-    vehical = device.vehical
+    vehicle = device.vehicle
   }
-  return vehical
+  return vehicle
 }
