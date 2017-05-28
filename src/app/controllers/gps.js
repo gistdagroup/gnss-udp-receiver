@@ -7,6 +7,7 @@ import Location from '~/app/models/location'
 import logger from '~/config/logger'
 import ua from 'universal-analytics'
 import * as utils from '~/app/utils/utils'
+import locationApi from '~/app/apis/location'
 
 const visitor = ua('UA-97830439-1')
 
@@ -39,7 +40,8 @@ export const save = async(datas) => {
       let location = await Location.findOne({hash: hash})
       if (!location) {
         location = await convertGnssToLocation(data)
-        promises.push(new Location(location).save())
+        // promises.push(new Location(location).save())
+        promises.push(locationApi(location))
         isSaveFirstLocation = true
       }
 
@@ -49,7 +51,7 @@ export const save = async(datas) => {
 }
 
 let convertGnssToLocation = async(data) => {
-  let vehical = await getVehicalFromDeviceId(data.imei)
+  // let vehical = await getVehicalFromDeviceId(data.imei)
   let hash = utils.createLocationHash(data)
   return {
     type: 'GNSS',
@@ -57,7 +59,8 @@ let convertGnssToLocation = async(data) => {
     coord: data.coord,
     hdop: data.hdop,
     vehical: vehical,
-    hash: hash
+    hash: hash,
+    uuid: data.imei
   }
 }
 

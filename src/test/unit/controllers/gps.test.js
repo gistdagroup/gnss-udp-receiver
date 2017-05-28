@@ -53,37 +53,37 @@ describe('gps-parser', () => {
     })
   })
 
-  describe('save', () => {
-    it('should save gprmc success', async() => {
-      await controller.save(gnssDataJson)
-
-      let gnsss = await Gnss.find({})
-      assert.equal(gnsss.length, 1)
-    })
-
-    it('should save gnss as location success', async() => {
-      await controller.save(gnssDataJson)
-
-      let count = await Location.count({})
-      assert.equal(count, 1)
-    })
-  })
-
-  it('should save only one location from full message success', async() => {
-    await controller.save(createMulitMessageWithDate(new Date()))
-
-    let count = await Location.count({})
-    assert.equal(count, 1)
-  })
-
-  it('should save only one location per minute', async() => {
-    let now = new Date()
-    await controller.save(createMulitMessageWithDate(now))
-    await controller.save(createMulitMessageWithDate(now))
-
-    let count = await Location.count({})
-    assert.equal(count, 1)
-  })
+  // describe('save', () => {
+  //   it('should save gprmc success', async() => {
+  //     await controller.save(gnssDataJson)
+  //
+  //     let gnsss = await Gnss.find({})
+  //     assert.equal(gnsss.length, 1)
+  //   })
+  //
+  //   it('should save gnss as location success', async() => {
+  //     await controller.save(gnssDataJson)
+  //
+  //     let count = await Location.count({})
+  //     assert.equal(count, 1)
+  //   })
+  // })
+  //
+  // it('should save only one location from full message success', async() => {
+  //   await controller.save(createMulitMessageWithDate(new Date()))
+  //
+  //   let count = await Location.count({})
+  //   assert.equal(count, 1)
+  // })
+  //
+  // it('should save only one location per minute', async() => {
+  //   let now = new Date()
+  //   await controller.save(createMulitMessageWithDate(now))
+  //   await controller.save(createMulitMessageWithDate(now))
+  //
+  //   let count = await Location.count({})
+  //   assert.equal(count, 1)
+  // })
 })
 let createMulitMessageWithDate = (date) => {
   return [{
