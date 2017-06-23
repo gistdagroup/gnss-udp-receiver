@@ -5,9 +5,9 @@
   "main": "app.js",
   "dependencies": {
     "bluebird": "^3.5.0",
-    "mockgoose": "^7.1.1",
+    "mockgoose": "7.1.1",
     "moment": "^2.18.1",
-    "mongoose": "^4.9.4",
+    "mongoose": "4.9.4",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "universal-analytics": "^0.4.13",
