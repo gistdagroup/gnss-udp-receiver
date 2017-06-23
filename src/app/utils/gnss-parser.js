@@ -42,9 +42,9 @@ export const parse = (message) => {
 
 export const parseDate = (string) => {
   if (string.length === 15) {
-    let DD = parseInt(string.substring(0, 2))
+    let DD = parseInt(string.substring(4, 6))
     let MM = parseInt(string.substring(2, 4))
-    let YYYY = 2000 + parseInt(string.substring(4, 6))
+    let YYYY = 2000 + parseInt(string.substring(0, 2))
     let HH = parseInt(string.substring(6, 8))
     let mm = parseInt(string.substring(8, 10))
     let ss = parseInt(string.substring(10, 12))

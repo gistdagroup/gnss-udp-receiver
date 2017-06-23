@@ -41,7 +41,7 @@ describe('gnss-parser', () => {
 
   describe('parse date', () => {
     it('should get date from message 1', () => {
-      let expected = new Date(Date.UTC(2011, 4, 17, 6, 33, 49, 80))
+      let expected = new Date(Date.UTC(2017, 4, 11, 6, 33, 49, 80))
 
       let data = parser.parse(message)
       let actual = data.date
@@ -50,7 +50,7 @@ describe('gnss-parser', () => {
     })
 
     it('should get date from message 2', () => {
-      let expected = new Date(Date.UTC(2017, 3, 19, 4, 24, 21, 0))
+      let expected = new Date(Date.UTC(2019, 3, 17, 4, 24, 21, 0))
 
       let data = parser.parse(message2)
       let actual = data.date
@@ -59,7 +59,7 @@ describe('gnss-parser', () => {
     })
 
     it('should get date from message 3', () => {
-      let expected = new Date(Date.UTC(2011, 4, 17, 6, 33, 49, 80))
+      let expected = new Date(Date.UTC(2017, 4, 11, 6, 33, 49, 80))
 
       let data = parser.parse(message3)
       let actual = data.date
@@ -344,7 +344,7 @@ describe('gnss-parser', () => {
 
   describe('parse Date', () => {
     it('should parse date', () => {
-      let expected = new Date(Date.UTC(2011, 4, 17, 6, 33, 49, 80))
+      let expected = new Date(Date.UTC(2017, 4, 11, 6, 33, 49, 80))
 
       let actual = parser.parseDate('170411063349.80')
 
