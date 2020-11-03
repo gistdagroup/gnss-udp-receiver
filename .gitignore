@@ -4,3 +4,4 @@ src/coverage/*
 deploy_rsa
 deploy_rsa.pub
 .idea/*
+package-lock.json
